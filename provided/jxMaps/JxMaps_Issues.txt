@@ -1,0 +1,112 @@
+JxMaps Bugs and Issues NOT Addressed:
+
+-------------------------------------------------------------------------------
+JComboBoxes cannot drop down over the map:
+
+Symptom: The map will cover the drop list of a combobox that is dropping down 
+over the list from above.  The problem also occurs when the combobox is below 
+the map and the position of the frame on the screen forces the drop list to 
+open upwards over the map.
+
+Work-around:  For comboboxes in the same frame as the map panel, put all 
+comboboxes to the side of the map so the drop lists don't go over the map.  
+The right side is probably the safer side if the widths of the combobox are 
+constrained.
+
+
+
+
+
+===============================================================================
+JxMaps Bugs and Issues Addressed by the jxMaps Package Code
+
+-------------------------------------------------------------------------------
+Map.removeEventListener(MapEvent) does not appear to work:
+
+The removeEventListener method appears to have no effect on the installed event 
+listeners. Even though Map.addEventListener() enables multiple  MapEvents to be 
+tied to a single event ID, since removeEventListener has no effect, a separate 
+management for multiple events per event ID was built and encapsulated into the 
+JxMapsPanel.
+
+-------------------------------------------------------------------------------
+Maps do not pass any information to MapEvents when the event is invoked:
+
+The event management in JxMapsPanel builds MapEvents as wrappers around 
+Consumer<JxMapsPanel> so that the associated map panel can be passed as a 
+context to the event handler.
+
+-------------------------------------------------------------------------------
+The invocation of MapEvents does not trap any exceptions:
+
+ Map runs events invocation on a separate thread that does not catch any 
+ exceptions generated during the event execution.   This means that any 
+ uncaught exceptions simply vanish and are never seen on the console.
+ The JxMapsPanel's event management wraps the invocation of all individual 
+ events with a try-catch that prints an error message and stack trace to 
+ stderr.   
+ 
+
+-------------------------------------------------------------------------------
+Both the constructor and the open() method of InfoWindow take the map:
+
+This redundant requirement for the map causes the opening of the window to be 
+coupled to the map.   The need for the map in the open() method is unnecessary
+because the InfoWindow already knows the map, which can be obtained via 
+its getMap() method.
+
+The EnhancedInfoWindow class is an extension of InfoWindow that provides open() methods
+that use the internally stored map reference and thus do not require that the map
+be accessible at the time the info window is opened.
+
+
+-------------------------------------------------------------------------------
+MapObject allow nonsensical events to be registered:
+
+Examples: 
+1. A Map will allow both a MapEvent and a MapMouseEvent to be registered with 
+a "click" event ID. They both appear to be invoked without a problem.
+
+2. A Map will allow both a MapEvent and a MapMouseEvent to be registered with
+a "center_changed" event ID.   An internal null pointer exception is thrown on the 
+MapMouseEvent with no obvious ties to the MapMouseEvent.
+
+Partial fix:
+The IMapNavigator implementation provides separate addMapEvent() and addMapMouseEvent()
+methods for registering the different kinds of events where the event IDs are white-listed
+to only allow sensical events to be registered.  
+
+TODO:  The above fix only covers Map events and not events on other MapObjects such as 
+Markers, info windows, etc.
+
+-------------------------------------------------------------------------------
+PolygonOptions.setPaths() method does not work
+
+Symptom:  Attempting to set the path(s) of a polygon via the 
+PolygonOptions.setPaths() method will result in an 
+"IllegalArgumentException: Unsupported parameter type"
+exception.  PolygonOptions.getPaths() will result in a null pointer
+exception if setPaths() was not called.
+
+Work-around: Set the path(s) directly on the Polygon object using 
+Polygon.setPath() or Polygon.setPaths()
+
+Provided code fix: The IJxMapsComponentsFactory.makePolygon(PolygonOptions options) 
+implementation will accept a PolygonOptions with its paths set, remove those paths 
+from the options object and set the paths of the Polygon object directly.   This 
+makes it possible to use a PolygonOptions object as if its setPaths() method actually
+worked.
+
+-------------------------------------------------------------------------------
+InfoWindows attached to Markers do not close when the Marker is made invisible
+
+If an InfoWindow is opened in the mode where it is attached to a Marker, when the 
+Marker is made invisible, the InfoWindow remains open, still attached to the invisible
+Marker.
+
+Work-around:  The EnhancedInfoWindow subclass add the capability of being made visible
+or invisible independent of its open/close state.  This enables the info window to be
+made invisible along with the Marker to which it is attached and to become visible again,
+still attached to the Marker, if so desired.   
+ 
+ 

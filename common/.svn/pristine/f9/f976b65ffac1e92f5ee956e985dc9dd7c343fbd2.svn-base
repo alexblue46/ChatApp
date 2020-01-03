@@ -1,0 +1,63 @@
+package common.msg.server.fromClient;
+
+import common.msg.server.IServerMsg;
+import common.msgReceivers.ITeamMember;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message type that lets you connect to the server.
+ * @author jonathancai
+ *
+ */
+public interface IConnectMsg extends IServerMsg{
+	/**
+	 * Retrieve the ID value directly from the interface.
+	 * getID() merely delegates to this method.
+	 * @return The host ID value associated with this data type.
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IConnectMsg.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return IConnectMsg.GetID();
+	}	
+	
+	/**
+	 * Gets the stub of the team member that is connecting to the server
+	 * @return the team member
+	 */
+	public ITeamMember getTeamMember();
+	
+	/**
+	 * Factory method to create the data type from an input value.   
+	 * The problem with this technique is while it does hide the data type
+	 * implementation, defining it at this interface level means that 
+	 * the implementation is invariant, which is an unnecessary restriction.
+	 * @param requestor the team member to be given to the server
+	 * @return An IConnectMsg object
+	 */
+	static IConnectMsg make(final ITeamMember requestor) {
+		return new IConnectMsg() {
+
+			/**
+			 * For Serialization.
+			 */
+			private static final long serialVersionUID = 231242332544323L;
+
+			@Override
+			public String toString() {
+				return requestor.toString();
+			}
+
+			@Override
+			public ITeamMember getTeamMember() {
+				return requestor;
+			}
+			
+		};
+	}
+
+}

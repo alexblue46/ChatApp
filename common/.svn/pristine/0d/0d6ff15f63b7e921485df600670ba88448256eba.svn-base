@@ -1,0 +1,20 @@
+package common.msg.status.network;
+
+import java.util.UUID;
+
+import common.msg.IRoomMsg;
+
+/**
+ * Response message for an IClientCheckStatusMsg
+ * @author Travis Benedict
+ *
+ */
+public interface IClientOkStatusMsg extends IRoomMsg {
+	
+	/**
+	 * 
+	 * @return the UUID obtained from the IClientCheckStatusMsg
+	 */
+	public UUID getUUID();
+
+}

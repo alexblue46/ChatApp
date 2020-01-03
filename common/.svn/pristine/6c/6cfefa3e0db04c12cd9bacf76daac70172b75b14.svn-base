@@ -1,0 +1,33 @@
+package common.msg.msgCmds;
+import common.ICmd2ModelAdapter;
+
+import common.msg.dataPackets.GameDataPacket;
+import common.msg.game.IGameMsg;
+import provided.datapacket.ADataPacketAlgoCmd;
+
+
+/**
+ * A message command for team members.
+ * @author Ayo
+ *
+ * @param <M> a message that the client receives
+ */
+public abstract class AGameMsgCmd<M extends IGameMsg>
+	extends ADataPacketAlgoCmd <Void, IGameMsg, Void, ICmd2ModelAdapter, GameDataPacket<M>> {
+	/**
+	 * Version number for serialization.
+	 */
+	private static final long serialVersionUID = 425159222432344L;
+	
+	/**
+	 * Adapter to allow communication with model
+	 */
+	protected transient ICmd2ModelAdapter cmd2model;
+
+	@Override
+    public void setCmd2ModelAdpt(ICmd2ModelAdapter cmd2ModelAdpt) {
+        cmd2model = cmd2ModelAdpt;
+    }
+}
+
+

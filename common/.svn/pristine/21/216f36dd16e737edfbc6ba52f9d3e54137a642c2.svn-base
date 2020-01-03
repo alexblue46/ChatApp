@@ -1,0 +1,29 @@
+package common.msgReceivers;
+
+import java.rmi.RemoteException;
+
+import common.msg.app.IApplicationMsg;
+import common.msg.dataPackets.ApplicationDataPacket;
+
+/**
+ * @author shryansgoyal
+ * Defines a client.
+ *
+ */
+public class Client implements IAppMsgReceiver {
+
+	@Override
+	public String getName() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void receiveMsg(ApplicationDataPacket<? extends IApplicationMsg> msg) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+}

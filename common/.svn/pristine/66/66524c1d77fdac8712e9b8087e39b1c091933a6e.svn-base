@@ -1,0 +1,32 @@
+package common.msg.app;
+
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message to request the server stub from a client.
+ * 
+ * @author jonathancai
+ */
+public interface IGetServersMsg extends IApplicationMsg {
+
+	@Override
+	public default IDataPacketID getID() {
+		return DataPacketIDFactory.Singleton.makeID(IGetServersMsg.class);
+	}
+
+	/**
+	 * Creates a new IGetServersMsg
+	 * @return the msg
+	 */
+	static IGetServersMsg make() {
+		return new IGetServersMsg() {
+
+			/**
+			 * generated UID
+			 */
+			private static final long serialVersionUID = -6076527077054741461L;
+		};
+	}
+
+}

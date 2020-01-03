@@ -1,0 +1,32 @@
+package common.team;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.UUID;
+
+import common.msgReceivers.IRoomMsgReceiver;
+
+/**
+ * Represents a team in the game, which should be a collection of the client's stubs who are part of the team. 
+ * @author andrew
+ *
+ */
+public interface ITeam extends Serializable { 
+	
+	/**
+	 * @return the human readable name of the team
+	 */
+	public String getName();
+	
+	/**
+	 * @return the UUID of the team for internal identification purposes 
+	 */
+	public UUID getUUID();
+	
+	
+	/**
+	 * @return the stubs of all the clients on the team 
+	 */
+	public Collection<IRoomMsgReceiver> getTeamMembers();
+	
+}

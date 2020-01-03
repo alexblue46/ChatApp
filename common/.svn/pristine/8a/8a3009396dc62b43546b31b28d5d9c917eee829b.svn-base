@@ -1,0 +1,19 @@
+package common.msg.status.network;
+
+import common.msg.IRoomMsg;
+import common.receivers.IRoomMember;
+
+/**
+ * Special message for handling exceptions thrown while trying to reach a remote entity. 
+ * This message should be sent from someone who has tried to contact a remote entity 
+ * and needs to alert the members in its network that the remote entity is unresponsive.
+ * @author nquazi
+ */
+public interface IRemoteExceptionMsg extends IRoomMsg {
+
+	/**
+	 * Get problematic stub causing remote exception error
+	 * @return TReceiver
+	 */
+	public IRoomMember getBadStub();
+}

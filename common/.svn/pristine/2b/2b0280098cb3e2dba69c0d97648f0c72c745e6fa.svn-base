@@ -1,0 +1,19 @@
+package common.msg.status.network;
+
+import java.util.UUID;
+
+/**
+ * Response message from Server to an IServerCheckStatusMsg. This message is sent by the Server only 
+ * to the client that sent the IServerCheckStatusMsg.
+ * @author S. Eshvar Chandran
+ *
+ */
+public interface IServerOkStatusMsg {
+	
+	/**
+	 *
+	 * @return - the UUID obtained from the IServerCheckStatusMsg
+	 */
+	public UUID getUUID();
+
+}

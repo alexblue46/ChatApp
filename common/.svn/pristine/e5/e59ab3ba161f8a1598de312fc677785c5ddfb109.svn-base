@@ -1,0 +1,21 @@
+package common.msg.room;
+
+import java.util.Collection;
+
+import common.msg.msgCmds.ARoomMsgCmd;
+
+
+/**
+ * Defines the ruls of a game.
+ * @author Ayo
+ *
+ */
+public interface IGameRules extends IGameMsg {
+	
+	/**
+	 * Returns the rules of a game. 
+	 * @return rules of the game
+	 */
+	public Collection<ARoomMsgCmd<?>> getGameRules();
+
+}

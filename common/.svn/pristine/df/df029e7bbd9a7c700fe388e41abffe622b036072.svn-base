@@ -1,0 +1,68 @@
+package common.msg.server.fromTeamMember;
+
+
+import common.msg.server.IServerMsg;
+
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message type that tells a server to create a team.
+ * @author jonathancai
+ *
+ */
+public interface IDeleteTeamMsg extends IServerMsg{
+
+	/**
+	 * Retrieve the ID value directly from the interface.
+	 * getID() merely delegates to this method.
+	 * @return The host ID value associated with this data type.
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IDeleteTeamMsg.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return IDeleteTeamMsg.GetID();
+	}
+	
+	/**
+	 * The name of the team.
+	 * @return team name
+	 */
+	public String getName();
+	
+	
+	/**
+	 * Factory method to create the data type from an input value.   
+	 * The problem with this technique is while it does hide the data type
+	 * implementation, defining it at this interface level means that 
+	 * the implementation is invariant, which is an unnecessary restriction.
+	 * @param name team names
+	 * @param requestor user requesting to be added to a chat room.
+	 * @return An IConnectMsg object
+	 */
+	static IDeleteTeamMsg make(final String name) {
+		return new IDeleteTeamMsg() {
+			
+
+			/**
+			 * Generated UID
+			 */
+			private static final long serialVersionUID = -4202212807333718412L;
+
+			@Override
+			public String toString() {
+				return name;
+			}
+
+			@Override
+			public String getName() {
+				return name;
+			}	
+			
+		};
+	}
+	
+}

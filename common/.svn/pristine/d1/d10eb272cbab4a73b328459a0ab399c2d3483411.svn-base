@@ -1,0 +1,13 @@
+package common.msg.game;
+
+
+import common.msg.IRoomMsg;
+
+/**
+ * Highest abstraction level for game-level messaging. 
+ * All messages passed in game implementations must implement this interface.
+ * @author jonathancai
+ */
+public interface IGameMsg extends IRoomMsg {
+
+}

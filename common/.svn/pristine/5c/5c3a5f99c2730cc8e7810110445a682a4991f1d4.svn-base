@@ -1,0 +1,21 @@
+package common.msg.status.network;
+
+import java.util.UUID;
+
+import common.msg.IRoomMsg;
+
+/**
+ * IServerCheckStatusMsg is special message sent to the server to check its status. Since a client doesn't know 
+ * a priori who the server is, this message should be sent to everyone.
+ * @author S. Eshvar Chandran
+ *
+ */
+public interface IServerCheckStatusMsg extends IRoomMsg {
+	
+	/**
+	 * 
+	 * @return - Unique ID identifying the message. This unique ID should be generated when this message is created. 
+	 */
+	public UUID getUUID();
+
+}

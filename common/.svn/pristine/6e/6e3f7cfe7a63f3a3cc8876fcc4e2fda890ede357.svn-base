@@ -1,0 +1,27 @@
+package common.msgReceivers;
+
+import java.rmi.RemoteException;
+
+import common.msg.IMsg;
+import common.msg.dataPackets.APIDataPacket;
+
+
+/**
+ * @author shryansgoyal
+ * Game server for FinalProject exists in the discovery server. 
+ */
+public class Server implements IMsgReceiver<APIDataPacket<? extends IMsg>> {
+
+	@Override
+	public String getName() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void receiveMsg(APIDataPacket<? extends IMsg> msg) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

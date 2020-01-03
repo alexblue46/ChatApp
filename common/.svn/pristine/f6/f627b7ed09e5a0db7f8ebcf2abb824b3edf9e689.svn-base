@@ -1,0 +1,17 @@
+package common.msg.room;
+
+import common.msg.IMsg;
+
+/**
+ * Defines a message at the room level.
+ * @author Ayo
+ *
+ */
+/**
+ * IRoomMsg class.
+ * @author shryansgoyal
+ *
+ */
+public interface IRoomMsg extends IMsg {
+
+}

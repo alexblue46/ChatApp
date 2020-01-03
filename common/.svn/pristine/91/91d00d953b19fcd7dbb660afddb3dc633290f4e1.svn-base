@@ -1,0 +1,63 @@
+package common.msg.client;
+
+import common.msg.game.ISendTeamsMsg;
+import common.msgReceivers.IServer;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message to that contains a server to send to a client.
+ * @author Edward Ni
+ */
+public interface ISendServersMsg extends IClientMsg {
+	
+	/**
+	 * Retrieve the ID value directly from the interface.
+	 * getID() merely delegates to this method.
+	 * @return The host ID value associated with this data type.
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(ISendTeamsMsg.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return ISendTeamsMsg.GetID();
+	}
+	
+	/**
+	 * Returns the server
+	 * @return the server
+	 */
+	public IServer getServer();
+	
+	
+	/**
+	 * Factory method to create the data type from an input value.   
+	 * The problem with this technique is while it does hide the data type
+	 * implementation, defining it at this interface level means that 
+	 * the implementation is invariant, which is an unnecessary restriction.
+	 * @param server the server being sent
+	 * @return An ISendServersMsg object
+	 */
+	static ISendServersMsg make(final IServer server) {
+		return new ISendServersMsg() {
+			
+			/**
+			 * For Serialization.
+			 */
+			private static final long serialVersionUID = 2389423823L;
+
+			@Override
+			public String toString() {
+				return server.toString();
+			}
+
+			@Override
+			public IServer getServer() {
+				return server;
+			}	
+			
+		};
+	}
+}

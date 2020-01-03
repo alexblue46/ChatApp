@@ -1,0 +1,43 @@
+Changes from original demo code:
+
+1. Modifications to HelloWorld example:
+	- renamed to HelloWorldView 
+	- modified main() to take Google API key as command line parameter 
+
+2. SampleDescriptors modified to take optional, nullable Google API Key
+
+3. JxMapsDemo:  
+	- Added API key to constructor
+	- Added optional Google API key command line parameter to main()
+	- Commented out Mac OS check since it is unnecessary and the AboutDialog.java code causes compile errors on non-Mac's.
+
+4. AboutDialog:
+	- Commented out the entire code because it causes compile errors on non-Macs and is unnecessary.
+
+5. Added optional Google API key command line parameter to main() to:
+	LightweightMapExample
+	StreetViewLayoutExample
+	
+6. Added MapViewOptions parameter to constructor and added optional Google API key command line parameter to main() to:
+	MapExample
+	StyledMapExample
+	MarkersExample
+	DirectionsExample
+	MapOptionsExample
+	InfoWindowExample
+	GeocoderExample
+	StreetViewExample
+	ElevationExample
+	PlacesSearchExample
+	PolygonExample
+	PolylineExample
+	TrafficLayerExample
+	EventsExample
+	SaveImageExample
+	
+Not changed:
+	FXMLExample
+	MapViewFXControl
+	JavaFXExample
+	
+

@@ -1,0 +1,62 @@
+package common.msg.server.fromTeamMember;
+
+import common.msg.server.IServerMsg;
+import common.msgReceivers.ITeamMember;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * @author jonathancai
+ *
+ */
+public interface ILeaveGameMsg extends IServerMsg{
+
+	/**
+	 * Retrieve the ID value directly from the interface.
+	 * getID() merely delegates to this method.
+	 * @return The host ID value associated with this data type.
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(ILeaveGameMsg.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return ILeaveGameMsg.GetID();
+	}
+	
+	/**
+	 * @return team member to leave the game
+	 */
+	public ITeamMember getTeamMember();
+	
+	/**
+	 * Factory method to create the data type from an input value.   
+	 * The problem with this technique is while it does hide the data type
+	 * implementation, defining it at this interface level means that 
+	 * the implementation is invariant, which is an unnecessary restriction.
+	 * @param member to leave the game
+	 * @return An IConnectMsg object
+	 */
+	static ILeaveGameMsg make(final ITeamMember member) {
+		return new ILeaveGameMsg() {
+			
+			/**
+			 * For Serialization.
+			 */
+			private static final long serialVersionUID = 2389423823L;
+
+			@Override
+			public String toString() {
+				return member.toString();
+			}
+
+			@Override
+			public ITeamMember getTeamMember() {
+				return member;
+			}
+			
+		};
+	}
+	
+}

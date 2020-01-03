@@ -1,0 +1,19 @@
+package common.msg.status.network;
+
+import java.util.UUID;
+
+import common.msg.IRoomMsg;
+
+/**
+ * IClientCheckStatusMsg is sent to a specific message receiver to check their status.
+ * @author S. Eshvar Chandran
+ *
+ */
+public interface IClientCheckStatusMsg extends IRoomMsg {
+	
+	/**
+	 * @return Unique ID identifying the message. This unique ID should be generated when this message is created.
+	 */
+	public UUID getUUID();
+
+}

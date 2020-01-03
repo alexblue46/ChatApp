@@ -1,0 +1,14 @@
+package common.msg.server;
+
+import common.msg.IApplicationMsg;
+
+import common.msg.IRoomMsg;
+
+/**
+ * Message type that server can receive.
+ * @author jonathancai
+ *
+ */
+public interface IServerMsg extends IApplicationMsg, IRoomMsg {
+
+}

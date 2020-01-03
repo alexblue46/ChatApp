@@ -1,0 +1,12 @@
+ How to run the provided demo code:
+ 
+ 1.  Make a run/launch config for the demo:   
+     The easiest way is to simply run the demo's controller, let if fail and then edit
+     the resultant run config 
+ 
+ 2. Be sure to set the working directory of the run config to the project's bin folder.
+ 
+ 3. Set the run config's command line argument to your Google API key.
+ 
+ 4.  Save the run config in your project so you don't have to make it again.
+ 

@@ -1,0 +1,44 @@
+package common.msgReceivers;
+
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import common.msg.IMsg;
+import provided.datapacket.DataPacket;
+
+/**
+ * @author shryansgoyal
+ *
+ * @param <M> Message type that extends IMsg.
+ */
+public interface IMsgReceiver<M extends DataPacket<? extends IMsg, ? extends IMsgReceiver<?>>> extends Remote {
+
+	/**
+	 * The name of the IClient in the registry. 
+	 */
+	public static String BOUND_NAME_CLIENT = "Client";
+	
+	
+	/**
+	 * The name of the IServer in the registry
+	 */
+	public static String BOUND_NAME_SERVER = "GameServer";
+
+	
+	/**
+	 * @return The human readable name of the IConnection 
+	 * @throws RemoteException remote exception
+	 */
+	public String getName() throws RemoteException;
+	
+	/**
+	 * Receive a generic IMsg sent to the connection and add it to the processing queue. 
+	 * @param msg Message type intended to be received by connection
+	 * @throws RemoteException Remote Exception.
+	 */
+	void receiveMsg(M msg) throws RemoteException;
+	
+	
+	
+}

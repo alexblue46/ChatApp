@@ -1,0 +1,32 @@
+package common.msg.dataPackets;
+
+import common.msg.game.IGameMsg;
+import common.msgReceivers.IMsgReceiver;
+import provided.datapacket.DataPacket;
+
+/**
+ * 
+ * Defines a data packet that an ITeamMember receives.
+ * @author andrew
+ * @param <M> message type that extends IClientMsg
+ * 
+ */
+public class GameDataPacket<M extends IGameMsg> extends RoomDataPacket<M, IMsgReceiver<? extends DataPacket<?,?>>> {
+	/**
+	 * Serialization number.
+	 */
+	private static final long serialVersionUID = 8909253345123767510L;
+
+	/**
+	 * Constructor for the class.
+	 * @param data Message to send at the user level.
+	 * @param sender IUser sending the message.
+	 */
+	public GameDataPacket(M data, IMsgReceiver<? extends DataPacket<?,?>> sender) {
+		super(data, sender);
+	}
+	
+
+}
+
+

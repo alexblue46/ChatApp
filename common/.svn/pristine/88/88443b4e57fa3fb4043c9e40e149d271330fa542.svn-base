@@ -1,0 +1,13 @@
+package common.msgReceivers;
+
+import common.msg.IMsg;
+import common.msg.dataPackets.ServerDataPacket;
+
+
+/**
+ * @author shryansgoyal
+ * Game server for FinalProject exists in the discovery server. 
+ */
+public interface IServer extends IMsgReceiver<ServerDataPacket<? extends IMsg>> {
+
+}

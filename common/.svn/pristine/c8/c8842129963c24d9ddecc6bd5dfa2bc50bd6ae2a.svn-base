@@ -1,0 +1,69 @@
+package common.msg.game;
+
+import java.util.Map;
+import java.util.UUID;
+
+
+import common.team.ITeam;
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Message that contains the set of teams for a game.
+ * @author jonathancai
+ */
+public interface ISendTeamsMsg extends IGameMsg {
+
+	/**
+	 * Retrieve the ID value directly from the interface.
+	 * getID() merely delegates to this method.
+	 * @return The host ID value associated with this data type.
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(ISendTeamsMsg.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return ISendTeamsMsg.GetID();
+	}
+	
+	
+	/**
+	 * Get all the teams
+	 * @return map of all teams
+	 */
+	public Map<UUID, ITeam> getTeams();
+	
+	
+	/**
+	 * Factory method to create the data type from an input value.   
+	 * The problem with this technique is while it does hide the data type
+	 * implementation, defining it at this interface level means that 
+	 * the implementation is invariant, which is an unnecessary restriction.
+	 * @param teamData 
+	 * @param requestor user requesting to be added to a chat room.
+	 * @return An IConnectMsg object
+	 */
+	static ISendTeamsMsg make(final Map<UUID, ITeam> teamData) {
+		return new ISendTeamsMsg() {
+			
+			/**
+			 * For Serialization.
+			 */
+			private static final long serialVersionUID = 2389423823L;
+
+			@Override
+			public String toString() {
+				return teamData.toString();
+			}
+
+			@Override
+			public Map<UUID, ITeam> getTeams() {
+				return teamData;
+			}	
+			
+		};
+	}
+	
+}

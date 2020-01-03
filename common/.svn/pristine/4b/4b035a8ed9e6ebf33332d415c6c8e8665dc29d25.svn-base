@@ -1,0 +1,11 @@
+package common.msg.client;
+
+import common.msg.IApplicationMsg;
+
+/**
+ * Message type that client is able to receive.
+ * @author jonathancai
+ */
+public interface IClientMsg extends IApplicationMsg {
+
+}

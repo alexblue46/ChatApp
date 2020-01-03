@@ -1,0 +1,11 @@
+common
+common.msg
+common.msg.client
+common.msg.dataPackets
+common.msg.game
+common.msg.msgCmds
+common.msg.server
+common.msg.server.fromClient
+common.msg.server.fromTeamMember
+common.msgReceivers
+common.team

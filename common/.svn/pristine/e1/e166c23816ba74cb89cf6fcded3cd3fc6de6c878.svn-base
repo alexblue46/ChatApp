@@ -1,0 +1,33 @@
+package common.msg.dataPackets;
+
+import common.msg.client.IClientMsg;
+
+import common.msgReceivers.IMsgReceiver;
+
+
+/**
+ * 
+ * Defines a data packet that an IClient receives.
+ * @author andrew
+ * @param <M> message type that extends IClientMsg
+ * 
+ */
+public class ClientDataPacket<M extends IClientMsg> extends ApplicationDataPacket<M, IMsgReceiver<? extends ApplicationDataPacket<?, ?>>> {
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1813241559397685281L;
+
+	/**
+	 * Constructor for the class.
+	 * @param data Message to send at the user level.
+	 * @param sender IUser sending the message.
+	 */
+	public ClientDataPacket(M data, IMsgReceiver<? extends ApplicationDataPacket<?, ?>> sender) {
+		super(data, sender);
+	}
+}
+
+

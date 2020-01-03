@@ -1,0 +1,35 @@
+package common.msg.msgCmds;
+
+import common.ICmd2ModelAdapter;
+import common.msg.app.IApplicationMsg;
+import common.msg.dataPackets.ApplicationDataPacket;
+import provided.datapacket.ADataPacketAlgoCmd;
+
+
+/**
+ * A message command for clients.
+ * @author Ayo
+ *
+ * @param <M> a message that the client receives
+ */
+public abstract class AAppMsgCmd<M extends IApplicationMsg>
+	extends ADataPacketAlgoCmd <Void, IApplicationMsg, Void, ICmd2ModelAdapter, ApplicationDataPacket<M>>  {
+	/**
+	 * Version number for serialization.
+	 */
+	private static final long serialVersionUID = 4251598138202234034L;
+	
+	/**
+	 * Adapter to allow communication with model
+	 */
+	protected transient ICmd2ModelAdapter cmd2model;
+
+	@Override
+    public void setCmd2ModelAdpt(ICmd2ModelAdapter cmd2ModelAdpt) {
+        cmd2model = cmd2ModelAdpt;
+    }
+}
+
+
+
+

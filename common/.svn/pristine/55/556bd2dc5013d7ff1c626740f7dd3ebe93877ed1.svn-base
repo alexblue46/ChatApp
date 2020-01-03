@@ -1,0 +1,12 @@
+package common.msgReceivers;
+
+import common.msg.dataPackets.RoomDataPacket;
+import common.msg.room.IRoomMsg;
+
+/**
+ * Receives IRoomsMsgs from any IMsgReceiver
+ *
+ */
+public interface IRoomMsgReceiver extends IMsgReceiver<RoomDataPacket<? extends IRoomMsg>> {
+
+}

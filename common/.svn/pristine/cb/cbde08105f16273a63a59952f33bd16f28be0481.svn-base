@@ -1,0 +1,45 @@
+package common.msg.app;
+
+import provided.datapacket.DataPacketIDFactory;
+import provided.datapacket.IDataPacketID;
+
+/**
+ * Supports direct connection between clients 
+ * @author andrew
+ *
+ */
+public interface IDirectConnectMsg extends IApplicationMsg {
+	/**
+	 * Retrieve the ID value directly from the interface.
+	 * getID() merely delegates to this method.
+	 * @return The host ID value associated with this data type.
+	 */
+	public static IDataPacketID GetID() {
+		return DataPacketIDFactory.Singleton.makeID(IDirectConnectMsg.class);
+	}
+	
+	@Override
+	public default IDataPacketID getID() {
+		return IDirectConnectMsg.GetID();
+	}
+	
+	
+	/**
+	 * Factory method to create the data type from an input value.   
+	 * The problem with this technique is while it does hide the data type
+	 * implementation, defining it at this interface level means that 
+	 * the implementation is invariant, which is an unnecessary restriction.
+	 * @return An IConnectMsg object
+	 */
+	static IDirectConnectMsg make() {
+		return new IDirectConnectMsg() {
+
+			/**
+			 * serial id
+			 */
+			private static final long serialVersionUID = 5540913922474294112L;
+			
+		};
+	}
+	
+}

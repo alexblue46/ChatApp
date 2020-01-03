@@ -1,0 +1,12 @@
+package common.msgReceivers;
+
+import common.msg.app.IApplicationMsg;
+import common.msg.dataPackets.ApplicationDataPacket;
+
+/**
+ * Receives IApplicationMsgs from andy IMsgReceiver
+ *
+ */
+public interface IAppMsgReceiver extends IMsgReceiver<ApplicationDataPacket<? extends IApplicationMsg>>{
+
+}

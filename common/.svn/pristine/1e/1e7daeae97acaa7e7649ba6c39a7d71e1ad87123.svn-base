@@ -1,0 +1,28 @@
+package common.msgReceivers;
+
+import java.rmi.RemoteException;
+
+import common.msg.dataPackets.RoomDataPacket;
+import common.msg.room.IRoomMsg;
+
+
+/**
+ * Represents a team member on an ITeam. 
+ * @author andrew
+ *
+ */
+public class TeamMember implements IRoomMsgReceiver {
+
+	@Override
+	public String getName() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void receiveMsg(RoomDataPacket<? extends IRoomMsg> msg) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

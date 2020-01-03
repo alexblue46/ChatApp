@@ -1,0 +1,14 @@
+package common.msgReceivers;
+
+import common.msg.IRoomMsg;
+import common.msg.dataPackets.GameDataPacket;
+
+
+/**
+ * Represents a team member on an ITeam. 
+ * @author andrew
+ *
+ */
+public interface ITeamMember extends IMsgReceiver<GameDataPacket<? extends IRoomMsg>>{
+
+}

@@ -1,0 +1,8 @@
+package common.msg;
+
+/**
+ * Defines a mesasge at the application level.
+ */
+public interface IApplicationMsg extends IMsg {
+
+}

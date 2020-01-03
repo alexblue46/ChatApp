@@ -1,0 +1,73 @@
+package common;
+
+import java.util.function.Supplier;
+import javax.swing.JComponent;
+
+import common.msg.game.IGameMsg;
+import common.msg.server.IServerMsg;
+import common.msgReceivers.IClient;
+import common.team.ITeam;
+
+/**
+ * Adapter for foreign commands to run in - provides all the necessary services that a command
+ * might need while running inside a host 
+ * @author andrew
+ *
+ */
+public interface ICmd2ModelAdapter {
+
+	/**
+	 * Send message to a specific IClient via their stub 
+	 * @param msg The message to be sent
+	 * @param client Stub of the IClient 
+	 */
+	public void sendMsgToClient(IGameMsg msg, IClient client);
+	
+	/**
+	 * Send a message to the whole team
+	 * @param msg The message to be sent
+	 * @param team The ITeam that represents a collection of IClients in the team 
+	 */
+	public void sendMsgToTeam(IGameMsg msg, ITeam team); 
+	
+	/**
+	 * Sends a message to the central game server
+	 * @param msg msg to be sent
+	 */
+	public void sendMsgToServer(IServerMsg msg);
+	
+	/**
+	 * Displays some component in the host's view 
+	 * @param compFac Factory to produce component to be displayed
+	 * @param title Name of the component
+	 */
+	public void displayComponent(Supplier<JComponent> compFac, String title);
+	
+	/**
+	 * Displays a simple text message in the host's view 
+	 * @param text Text to be displayed
+	 */
+	public void displayText(String text);
+	
+	/**
+     * Puts a value in the mixed-data state dictionary for interacting with other commands.
+	 * @param <T> The type of the data we are putting in the dictionary
+     * @param key The key for this value to be stored under
+     * @param data The data to store in the dictionary
+     */
+    public <T> void putStateData(String key, T data);
+
+    /**
+     * Gets a value from the mixed-data state dictionary for interacting with other commands.
+     * @param <T> The type of the data we are retrieving
+     * @param key The key for this value to be stored under
+     * @return The data stored in the state dictionary under the given key
+     */
+    public <T> T getStateData(String key);
+	
+    /**
+     * Gets the local application's WorldWind API key 
+     * @return the api key
+     */
+	public String getWorldWindAPIKey();
+}

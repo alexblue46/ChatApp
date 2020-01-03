@@ -1,0 +1,13 @@
+package common.msgReceivers;
+
+import common.msg.IApplicationMsg;
+import common.msg.dataPackets.ClientDataPacket;
+
+/**
+ * @author shryansgoyal
+ * Defines a client.
+ *
+ */
+public interface IClient extends IMsgReceiver<ClientDataPacket<? extends IApplicationMsg>> {
+
+}

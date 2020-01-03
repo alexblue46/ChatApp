@@ -1,0 +1,29 @@
+package common.msg.dataPackets;
+
+import common.msg.app.IApplicationMsg;
+import common.msgReceivers.IMsgReceiver;
+
+/**
+ * 
+ * Defines a data packet at the application level.
+ * @author jakelei
+ *
+ * @param <M> message that extends IApplicationMsg
+ */
+public class ApplicationDataPacket<M extends IApplicationMsg> extends APIDataPacket<M>{
+
+	/**
+	 * Serialization number.
+	 */
+	private static final long serialVersionUID = 48732792398L;
+
+	/**
+	 * Constructor for the class.
+	 * @param data message to be sent.
+	 * @param sender IMsgReceiver sending the message.
+	 */
+	public ApplicationDataPacket(M data,  IMsgReceiver<?> sender) {
+		super(data, sender);
+	}
+	
+}

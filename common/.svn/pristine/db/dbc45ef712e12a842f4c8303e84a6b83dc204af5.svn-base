@@ -1,0 +1,31 @@
+package common.msg.dataPackets;
+
+import common.msg.IRoomMsg;
+import common.msgReceivers.IMsgReceiver;
+import provided.datapacket.DataPacket;
+
+/**
+ * 
+ * Defines a room data packet.
+ * @author andrew
+ * @param <M> message type that extends IRoomMsg
+ * @param <S> an IMsgReceiver; either an IClient, IServer or ITeamMember.
+ * 
+ */
+public class RoomDataPacket<M extends IRoomMsg, S extends IMsgReceiver<? extends DataPacket<?,?>>> extends DataPacket<M, S>{
+
+	/**
+	 * Serialization number.
+	 */
+	private static final long serialVersionUID = 123456789L;
+
+	/**
+	 * Constructor for the class.
+	 * @param data message to be sent.
+	 * @param sender IMsgReceiver sending the message.
+	 */
+	public RoomDataPacket(M data, S sender) {
+		super(data, sender);
+	}
+	
+}

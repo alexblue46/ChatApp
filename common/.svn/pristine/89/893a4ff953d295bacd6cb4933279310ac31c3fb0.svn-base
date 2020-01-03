@@ -1,0 +1,12 @@
+package common.msg;
+
+import provided.datapacket.IDataPacketData;
+
+/**
+ * Top-level definition of a message.
+ * Messages will be enclosed in a data packet, which will be sent to remote users.
+ * @author jonathancai
+ */
+public interface IMsg extends IDataPacketData {
+
+}
